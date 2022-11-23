@@ -114,17 +114,6 @@ class registration extends StatelessWidget {
                           SizedBox(
                             height: 10,
                           ),
-                          DropdownButton<String>(
-  items: items.map((String DropdownStringitems) {
-    return DropdownMenuItem<String>(
-      value: DropdownStringitems,
-      child: Text(DropdownStringitems),
-    );
-  }).toList(),
-  onChanged: (newValue) {},
-  setState(() {
-                _selectedLocation = newValue;
-),
                           const TextField(
                             decoration: InputDecoration(
                                 fillColor: Colors.black12,
