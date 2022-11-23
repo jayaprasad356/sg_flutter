@@ -111,27 +111,121 @@ class registration extends StatelessWidget {
                                 filled: true,
                                 hintText: 'Confirm Password'),
                           ),
-                          Row(
-                            children: [
-                              DropdownButton(
-                                value: dropdownvalue,
-                                icon: const Icon(Icons.keyboard_arrow_down),
-                                items: items.map((String items) {
-                                  return DropdownMenuItem(
-                                    value: items,
-                                    child: Text(items),
-                                  );
-                                }).toList(),
-                                // After selecting the desired option,it will
-                                // change button value to selected value
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    dropdownvalue = newValue!;
-                                  });
-                                },
-                              ),
-                            ],
-                          )
+                          SizedBox(
+                            height: 10,
+                          ),
+                          DropdownButton<String>(
+  items: items.map((String DropdownStringitems) {
+    return DropdownMenuItem<String>(
+      value: DropdownStringitems,
+      child: Text(DropdownStringitems),
+    );
+  }).toList(),
+  onChanged: (newValue) {},
+  setState(() {
+                _selectedLocation = newValue;
+),
+                          const TextField(
+                            decoration: InputDecoration(
+                                fillColor: Colors.black12,
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5.0)),
+                                    borderSide: BorderSide.none),
+                                hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                    fontFamily: "WorkSansLight"),
+                                filled: true,
+                                hintText: 'Email ID'),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          const TextField(
+                            decoration: InputDecoration(
+                                fillColor: Colors.black12,
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5.0)),
+                                    borderSide: BorderSide.none),
+                                hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                    fontFamily: "WorkSansLight"),
+                                filled: true,
+                                hintText: 'Address '),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          const TextField(
+                            decoration: InputDecoration(
+                                fillColor: Colors.black12,
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5.0)),
+                                    borderSide: BorderSide.none),
+                                hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                    fontFamily: "WorkSansLight"),
+                                filled: true,
+                                hintText: 'Village Name'),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          const TextField(
+                            decoration: InputDecoration(
+                                fillColor: Colors.black12,
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5.0)),
+                                    borderSide: BorderSide.none),
+                                hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                    fontFamily: "WorkSansLight"),
+                                filled: true,
+                                hintText: 'Pincode'),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          const TextField(
+                            decoration: InputDecoration(
+                                fillColor: Colors.black12,
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5.0)),
+                                    borderSide: BorderSide.none),
+                                hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                    fontFamily: "WorkSansLight"),
+                                filled: true,
+                                hintText: 'District'),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          const SizedBox(height: 28),
+                          SizedBox(
+                            height: 45,
+                            width: 170,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        registration("hj")));
+                              },
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          const Color(0xFF059176)),
+                                  shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)))),
+                              child: const Text("Click To Registration"),
+                            ),
+                          ),
                         ],
                       )),
                 ))

@@ -7,7 +7,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-static const String _title="Smart Gram";
+  static const String _title = "Smart Gram";
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -50,59 +50,65 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             CircleAvatar(
               backgroundColor: Colors.transparent,
-              child: SizedBox(width: 180,
-              height: 150,
-              child: ClipOval(
-                child: Image.asset("assets/images/logo.png"),
-              ),),
+              child: SizedBox(
+                width: 180,
+                height: 150,
+                child: ClipOval(
+                  child: Image.asset("assets/images/logo.png"),
+                ),
+              ),
             ),
-            const SizedBox(width: 15,),
+            const SizedBox(
+              width: 15,
+            ),
             const Text(MyApp._title)
           ],
         ),
-
-
       ),
       body: Center(
         child: Container(
-          margin: const EdgeInsets.only(right: 28,left: 28),
+          margin: const EdgeInsets.only(right: 28, left: 28),
           child: Column(
-            children:   [
+            children: [
               // ColoredBox(
               //   color: Colors.cyanAccent,
               //   child: SizedBox(
               //     width: 600,
               //     height: 300,),
               // ),
-              const SizedBox(height: 100,),
+              const SizedBox(
+                height: 100,
+              ),
               const TextField(
                 decoration: InputDecoration(
                     fillColor: Colors.black12,
                     border: OutlineInputBorder(
-                      // width: 0.0 produces a thin "hairline" border
+                        // width: 0.0 produces a thin "hairline" border
                         borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                       borderSide: BorderSide.none
-                       // borderSide: BorderSide(color: Colors.white24)
-                      //borderSide: const BorderSide(),
-                    ),
-
-                    hintStyle: TextStyle(color: Colors.grey,fontFamily: "WorkSansLight"),
+                        borderSide: BorderSide.none
+                        // borderSide: BorderSide(color: Colors.white24)
+                        //borderSide: const BorderSide(),
+                        ),
+                    hintStyle: TextStyle(
+                        color: Colors.grey, fontFamily: "WorkSansLight"),
                     filled: true,
                     hintText: 'Mobile'),
               ),
-              const SizedBox(height: 24,),
+              const SizedBox(
+                height: 24,
+              ),
               const TextField(
                 decoration: InputDecoration(
                     fillColor: Colors.black12,
                     border: OutlineInputBorder(
-                      // width: 0.0 produces a thin "hairline" border
+                        // width: 0.0 produces a thin "hairline" border
                         borderRadius: BorderRadius.all(Radius.circular(5.0)),
                         borderSide: BorderSide.none
-                      // borderSide: BorderSide(color: Colors.white24)
-                      //borderSide: const BorderSide(),
-                    ),
-
-                    hintStyle: TextStyle(color: Colors.grey,fontFamily: "WorkSansLight"),
+                        // borderSide: BorderSide(color: Colors.white24)
+                        //borderSide: const BorderSide(),
+                        ),
+                    hintStyle: TextStyle(
+                        color: Colors.grey, fontFamily: "WorkSansLight"),
                     filled: true,
                     hintText: 'Password'),
               ),
@@ -110,26 +116,23 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 height: 45,
                 width: 170,
-                child: ElevatedButton(onPressed:() {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => registration("hj")));
-                },
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => registration("hj")));
+                  },
                   style: ButtonStyle(
-                    backgroundColor:
-                      MaterialStateProperty.all<Color>(const Color(0xFF059176)),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)
-                      )
-                    )
-                  ),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color(0xFF059176)),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)))),
                   child: const Text("Login"),
-                  
                 ),
               ),
-              const SizedBox(height: 3,),
+              const SizedBox(
+                height: 3,
+              ),
               const Text("click here to signup")
-
             ],
           ),
         ),
@@ -137,5 +140,4 @@ class _MyHomePageState extends State<MyHomePage> {
 // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-
 }
