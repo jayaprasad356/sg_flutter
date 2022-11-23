@@ -15,6 +15,7 @@ class registration extends StatelessWidget {
     'Item 5',
   ];
 
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
