@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_gram/home.dart';
 
 class registration extends StatelessWidget {
   static const String routeName = '/profilePage';
@@ -14,7 +14,6 @@ class registration extends StatelessWidget {
     'Item 4',
     'Item 5',
   ];
-
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +55,7 @@ class registration extends StatelessWidget {
                                 filled: true,
                                 hintText: 'Name'),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           const TextField(
@@ -76,7 +75,7 @@ class registration extends StatelessWidget {
                                 filled: true,
                                 hintText: 'Mobile Number'),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           const TextField(
@@ -96,7 +95,7 @@ class registration extends StatelessWidget {
                                 filled: true,
                                 hintText: 'Password'),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           const TextField(
@@ -112,7 +111,10 @@ class registration extends StatelessWidget {
                                 filled: true,
                                 hintText: 'Confirm Password'),
                           ),
-                          SizedBox(
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const SizedBox(
                             height: 10,
                           ),
                           const TextField(
@@ -128,7 +130,7 @@ class registration extends StatelessWidget {
                                 filled: true,
                                 hintText: 'Email ID'),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           const TextField(
@@ -144,7 +146,7 @@ class registration extends StatelessWidget {
                                 filled: true,
                                 hintText: 'Address '),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           const TextField(
@@ -160,7 +162,7 @@ class registration extends StatelessWidget {
                                 filled: true,
                                 hintText: 'Village Name'),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           const TextField(
@@ -176,7 +178,7 @@ class registration extends StatelessWidget {
                                 filled: true,
                                 hintText: 'Pincode'),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           const TextField(
@@ -192,7 +194,7 @@ class registration extends StatelessWidget {
                                 filled: true,
                                 hintText: 'District'),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           const SizedBox(height: 28),
@@ -202,8 +204,7 @@ class registration extends StatelessWidget {
                             child: ElevatedButton(
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        registration("hj")));
+                                    builder: (BuildContext context) => home()));
                               },
                               style: ButtonStyle(
                                   backgroundColor:
