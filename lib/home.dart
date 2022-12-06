@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_gram/registration.dart';
 
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
@@ -19,7 +18,7 @@ class _homeState extends State<home> {
             Expanded(
                 flex: 1,
                 child: Container(
-                  color: Color(0xFF059176),
+                  color: const Color(0xFF059176),
                 )),
             Expanded(flex: 6, child: Container(color: Colors.white))
           ]),
@@ -62,7 +61,7 @@ class _homeState extends State<home> {
                         onPageChanged: (page) {},
                         itemBuilder: (context, pagePosition) {
                           return Container(
-                            margin: EdgeInsets.all(10),
+                            margin: const EdgeInsets.all(10),
                             child: Image.asset("assets/images/home_image.png"),
                           );
                         }),
@@ -101,7 +100,7 @@ class _homeState extends State<home> {
                                 children: [
                                   Image.asset("assets/images/home_image.png",
                                       height: 80),
-                                  Text("paddy")
+                                  const Text("paddy")
                                 ],
                               ),
                             ),
@@ -149,7 +148,7 @@ class _homeState extends State<home> {
                       ],
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 20),
+                      margin: const EdgeInsets.only(left: 20),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,14 +188,47 @@ class _homeState extends State<home> {
         },
       ),
     ),
-    Text("three"),
-    Text("four")
+    SizedBox(
+      child: GridView.count(
+        crossAxisCount: 2,
+        children: List.generate(
+          20,
+          (index) => Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                    height: 80,
+                    width: 80,
+                    child: Container(
+                      width: 60,
+                      height: 80,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                                "assets/images/home_image.png"),
+                            ),
+                      ),
+                    )),
+                const Text("paddy",),
+                const Text("Urea",style: TextStyle(color: Colors.black38),),
+                ElevatedButton(onPressed: (){},style:    ButtonStyle(
+                  backgroundColor:
+                  MaterialStateProperty.all<Color>(
+                       Color(0xFF059176)),
+                ), child: const Text("View"),)
+              ],
+            ),
+          ),
+        ),
+      ),
+    ),
+    const Text("four")
   ];
 
+  static get items => null;
+
   void _onItemTapped(int index) {
-    // if (index == 1) {
-    //
-    // }
     setState(() {
       _selctedIndex = index;
     });
@@ -227,7 +259,7 @@ class _homeState extends State<home> {
           automaticallyImplyLeading: false,
           backgroundColor: const Color(0xFF059176),
           actions: <Widget>[
-            IconButton(icon: Icon(Icons.shopping_cart), onPressed: () {}),
+            IconButton(icon: const Icon(Icons.shopping_cart), onPressed: () {}),
           ],
         ),
         body: screens[_selctedIndex],
