@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_gram/cart.dart';
 
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
@@ -304,7 +305,9 @@ class _homeState extends State<home> {
             margin: const EdgeInsets.only(left: 18, right: 18, bottom: 10),
             child: SizedBox(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+
+                },
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
                         const Color(0xFF059176)),
@@ -394,5 +397,11 @@ class _homeState extends State<home> {
                 onTap: _onItemTapped,
               ),
             )));
+  }
+
+  void _navigateToNextPage() {
+    // push a new route to the navigation stack
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CartScreen()));
   }
 }

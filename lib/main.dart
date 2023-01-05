@@ -1,5 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:smart_gram/registration.dart';
+import 'package:smart_gram/register.dart';
+import 'package:smart_gram/utils.dart';
+
+import 'Constant.dart';
+import 'Services/apiCall.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,14 +13,15 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   static const String _title = "Smart Gram";
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -32,8 +39,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late bool status;
+  late String message;
+
   @override
   Widget build(BuildContext context) {
+    var passwordController = new TextEditingController();
+    var mobileNuberConroller = new TextEditingController();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF059176),
@@ -71,8 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(
                 height: 100,
               ),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                controller: mobileNuberConroller,
+                decoration: const InputDecoration(
                     fillColor: Colors.black12,
                     border: OutlineInputBorder(
                         // width: 0.0 produces a thin "hairline" border
@@ -89,8 +102,9 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(
                 height: 24,
               ),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                controller: passwordController,
+                decoration: const InputDecoration(
                     fillColor: Colors.black12,
                     border: OutlineInputBorder(
                         // width: 0.0 produces a thin "hairline" border
@@ -109,9 +123,30 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 45,
                 width: 170,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => registration("hj")));
+                  onPressed: () async {
+                    String password = passwordController.text;
+                    String mobile = mobileNuberConroller.text;
+
+                    var url = Constant.LOGIN_URL;
+                    Map<String, dynamic> bodyObject = {
+                      Constant.MOBILE_NUMBER: mobile,
+                      Constant.PASSWORD: password,
+                    };
+                    try {
+                      String jsonString = await apiCall(url, bodyObject);
+                      dynamic json = jsonDecode(jsonString);
+                      status = json["success"];
+                      message = json["message"];
+                    } catch (e) {
+                      // An error occurred
+                    }
+                    if (status) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              registration("s")));
+                    } else {
+                      Utils().showToast(message);
+                    }
                   },
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(

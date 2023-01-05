@@ -1,8 +1,25 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:smart_gram/home.dart';
+import 'package:smart_gram/utils.dart';
+
+import 'Constant.dart';
+import 'Services/apiCall.dart';
 
 class registration extends StatelessWidget {
   static const String routeName = '/profilePage';
+  var nameController = TextEditingController();
+  var mobileNuberConroller = TextEditingController();
+  var passwordController = TextEditingController();
+  var confirmPasswordController = TextEditingController();
+  var mailController = TextEditingController();
+  var addressController = TextEditingController();
+  var villiageNameController = TextEditingController();
+  var pinCodeController = TextEditingController();
+  var districtController = TextEditingController();
+  late bool status;
+  late String message;
 
   registration(String s);
 
@@ -18,9 +35,9 @@ class registration extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Registration"),
+          title: const Text("Registration"),
           elevation: 0.0,
-          backgroundColor: Color(0xFF059176),
+          backgroundColor: const Color(0xFF059176),
         ),
         body: Stack(
 //        fit: StackFit.expand,
@@ -29,7 +46,7 @@ class registration extends StatelessWidget {
               Expanded(
                   flex: 1,
                   child: Container(
-                    color: Color(0xFF059176),
+                    color: const Color(0xFF059176),
                   )),
               Expanded(flex: 6, child: Container(color: Colors.white))
             ]),
@@ -39,11 +56,12 @@ class registration extends StatelessWidget {
                 right: 20,
                 child: Card(
                   child: Padding(
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       child: Column(
                         children: [
-                          const TextField(
-                            decoration: InputDecoration(
+                          TextField(
+                            controller: nameController,
+                            decoration: const InputDecoration(
                                 fillColor: Colors.black12,
                                 border: OutlineInputBorder(
                                     borderRadius:
@@ -58,8 +76,9 @@ class registration extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          const TextField(
-                            decoration: InputDecoration(
+                          TextField(
+                            controller: mobileNuberConroller,
+                            decoration: const InputDecoration(
                                 fillColor: Colors.black12,
                                 border: OutlineInputBorder(
                                     // width: 0.0 produces a thin "hairline" border
@@ -78,8 +97,9 @@ class registration extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          const TextField(
-                            decoration: InputDecoration(
+                          TextField(
+                            controller: passwordController,
+                            decoration: const InputDecoration(
                                 fillColor: Colors.black12,
                                 border: OutlineInputBorder(
                                     // width: 0.0 produces a thin "hairline" border
@@ -98,8 +118,9 @@ class registration extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          const TextField(
-                            decoration: InputDecoration(
+                          TextField(
+                            controller: confirmPasswordController,
+                            decoration: const InputDecoration(
                                 fillColor: Colors.black12,
                                 border: OutlineInputBorder(
                                     borderRadius:
@@ -117,8 +138,9 @@ class registration extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          const TextField(
-                            decoration: InputDecoration(
+                          TextField(
+                            controller: mailController,
+                            decoration: const InputDecoration(
                                 fillColor: Colors.black12,
                                 border: OutlineInputBorder(
                                     borderRadius:
@@ -133,8 +155,9 @@ class registration extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          const TextField(
-                            decoration: InputDecoration(
+                          TextField(
+                            controller: addressController,
+                            decoration: const InputDecoration(
                                 fillColor: Colors.black12,
                                 border: OutlineInputBorder(
                                     borderRadius:
@@ -149,8 +172,9 @@ class registration extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          const TextField(
-                            decoration: InputDecoration(
+                          TextField(
+                            controller: villiageNameController,
+                            decoration: const InputDecoration(
                                 fillColor: Colors.black12,
                                 border: OutlineInputBorder(
                                     borderRadius:
@@ -165,8 +189,9 @@ class registration extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          const TextField(
-                            decoration: InputDecoration(
+                          TextField(
+                            controller: pinCodeController,
+                            decoration: const InputDecoration(
                                 fillColor: Colors.black12,
                                 border: OutlineInputBorder(
                                     borderRadius:
@@ -181,8 +206,9 @@ class registration extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          const TextField(
-                            decoration: InputDecoration(
+                          TextField(
+                            controller: districtController,
+                            decoration: const InputDecoration(
                                 fillColor: Colors.black12,
                                 border: OutlineInputBorder(
                                     borderRadius:
@@ -202,9 +228,50 @@ class registration extends StatelessWidget {
                             height: 45,
                             width: 170,
                             child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (BuildContext context) => home()));
+                              onPressed: () async {
+                                String mobile = mobileNuberConroller.text;
+                                String name = nameController.text;
+                                String password = passwordController.text;
+                                String confirmPassword =
+                                    confirmPasswordController.text;
+                                String mail = mailController.text;
+                                String address = addressController.text;
+                                String village = villiageNameController.text;
+                                String pinCode = pinCodeController.text;
+                                String district = districtController.text;
+
+                                var url = Constant.SIGNUP_URL;
+                                Map<String, dynamic> bodyObject = {
+                                  Constant.NAME: name,
+                                  Constant.MOBILE: mobile,
+                                  Constant.PASSWORD: password,
+                                  Constant.OCCUPATION: "formar",
+                                  Constant.GENDER: "male",
+                                  Constant.EMAIL: mail,
+                                  Constant.ADDRESS: address,
+                                  Constant.VILLAGE: village,
+                                  Constant.PINCODE: pinCode,
+                                  Constant.DISTRICT: district
+                                };
+
+                                try {
+                                  String jsonString =
+                                      await apiCall(url, bodyObject);
+                                  dynamic json = jsonDecode(jsonString);
+                                  status = json["success"];
+                                  message = json["message"];
+                                } catch (e) {
+                                  // An error occurred
+                                }
+
+                                if (status) {
+                                  Utils().showToast(message);
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          const home()));
+                                }else{
+                                  Utils().showToast(message);
+                                }
                               },
                               style: ButtonStyle(
                                   backgroundColor:
