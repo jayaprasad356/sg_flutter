@@ -7,7 +7,7 @@ import 'package:smart_gram/utils.dart';
 import 'Constant.dart';
 import 'Services/apiCall.dart';
 
-class registration extends StatelessWidget {
+class Registration extends StatelessWidget {
   static const String routeName = '/profilePage';
   var nameController = TextEditingController();
   var mobileNuberConroller = TextEditingController();
@@ -21,7 +21,7 @@ class registration extends StatelessWidget {
   late bool status;
   late String message;
 
-  registration(String s);
+  Registration(String s);
 
   String dropdownvalue = 'Item 1';
   var items = [
@@ -268,7 +268,7 @@ class registration extends StatelessWidget {
                                   Utils().showToast(message);
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          const home()));
+                                          const Home()));
                                 }else{
                                   Utils().showToast(message);
                                 }

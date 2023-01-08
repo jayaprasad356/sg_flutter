@@ -13,7 +13,9 @@ class Constant {
   static const String SLIDES_LIST = "${BaseUrl}slidelist.php";
   static const String UPDATE_USER_URL = "${BaseUrl}updateuser.php";
   static const String USER_DETAILS_URL = "${BaseUrl}userdetails.php";
+
   static const String CATEGORY_LIST_URL = "${BaseUrl}category-list.php";
+
   static const String RECENT_PRODUCTS_URL = "${BaseUrl}recentproducts.php";
   static const String PRODUCT_LIST_URL = "${BaseUrl}productlist.php";
   static const String NOTIFICATION_LIST_URL = "${BaseUrl}notification-list.php";

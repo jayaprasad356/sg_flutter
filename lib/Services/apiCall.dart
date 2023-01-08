@@ -16,3 +16,13 @@ Future<String> apiCall(
     throw Exception('API call failed with status code: ${response.statusCode}');
   }
 }
+
+Future<dynamic> dataCall(String url) async {
+  var response = await http.post(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    return response.body;
+  } else {
+    throw Exception('API call failed with status code: ${response.statusCode}');
+  }
+}

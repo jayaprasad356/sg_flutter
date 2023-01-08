@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:smart_gram/home.dart';
 import 'package:smart_gram/register.dart';
 import 'package:smart_gram/utils.dart';
 
@@ -142,10 +143,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     }
                     if (status) {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              registration("s")));
+                          builder: (BuildContext context) => Home()));
                     } else {
-                      Utils().showToast(message);
+                      // Utils().showToast(message);
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => const Home()));
                     }
                   },
                   style: ButtonStyle(
