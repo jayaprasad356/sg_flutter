@@ -159,9 +159,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(
-                height: 3,
+                height: 20,
               ),
-              const Text("click here to signup")
+              GestureDetector(child: const Text("click here to signup"),onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) =>  Registration("s")));
+              },)
             ],
           ),
         ),

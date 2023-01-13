@@ -5,6 +5,7 @@ import 'package:smart_gram/Utils/methods.dart';
 import 'package:smart_gram/screens/poduct_details.dart';
 import 'package:smart_gram/utils.dart';
 import '../Model/product_model.dart';
+import '../customDelegate.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -48,21 +49,36 @@ class _HomePageState extends State<HomePage> {
                         height: 45,
                         child: Container(
                           margin: const EdgeInsets.only(left: 25, right: 25),
-                          child: const TextField(
+                          child:  TextField(
                             decoration: InputDecoration(
-                                contentPadding: EdgeInsets.only(top: 15),
-                                prefixIcon: Icon(Icons.search,
-                                    color: Color(0xFF059176)),
+                                contentPadding: const EdgeInsets.only(top: 15),
+                                prefixIcon:       IconButton(
+                                  onPressed: () {
+                                    // method to show the search bar
+                                    showSearch(
+                                        context: context,
+                                        // delegate to customize the search bar
+                                        delegate: CustomSearchDelegate()
+                                    );
+                                  },
+                                  icon: const Icon(Icons.search),
+                                ),
                                 fillColor: Colors.white,
-                                border: OutlineInputBorder(
+                                border: const OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5.0)),
                                     borderSide: BorderSide.none),
-                                hintStyle: TextStyle(
+                                hintStyle: const TextStyle(
                                     color: Colors.grey,
                                     fontFamily: "WorkSansLight"),
                                 filled: true,
-                                hintText: 'Search Product'),
+                                hintText: 'Search Product'),onTap: (){
+                            showSearch(
+                                context: context,
+                                // delegate to customize the search bar
+                                delegate: CustomSearchDelegate()
+                            );
+                          },
                           ),
                         ),
                       ),
